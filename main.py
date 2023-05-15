@@ -3,7 +3,7 @@ protein data after giving amino, rna or dna sequence
  works only for sequences from NCBI database """
 
 
-# func that translate dna to aminoacid
+# func that translate dna to amino acids
 def translation_dna_to_amino(seq):
     nucleoToAmino = {'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
                      'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
@@ -35,15 +35,14 @@ def translation_dna_to_amino(seq):
 
 
 def checking_sequence(sequence):
-    for symbol in sequence:
-        if symbol in nucleoOfDNA:
-            TypeOfSeq = 'DNA'
-        elif symbol in nucleoOfRNA:
-            TypeOfSeq = 'RNA'
-        elif symbol in massesOfAmino:
-            TypeOfSeq = 'amino'
-        else:
-            TypeOfSeq = 'Error'
+    if set(sequence).issubset(set(nucleoOfDNA)):
+        TypeOfSeq = 'DNA'
+    elif set(sequence).issubset(set(nucleoOfRNA)):
+        TypeOfSeq = 'RNA'
+    elif set(sequence).issubset(set(massesOfAmino)):
+        TypeOfSeq = 'amino'
+    else:
+        TypeOfSeq = 'Error'
     return TypeOfSeq
 
 # new function removing special symbols from string
